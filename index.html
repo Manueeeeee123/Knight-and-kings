@@ -3,27 +3,32 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Il Tuo Gioco</title>
-  <link rel="stylesheet" href="style.css"> <!-- Collega il file CSS -->
+  <title>Gioco di Carte</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
-  <h1>Knights and kings</h1>
-
-  <div id="gioco">
-    <h2>Inizia a giocare</h2>
-
+  <div id="schermataIniziale">
+    <button id="avviaGioco">Avvia il gioco</button>
+  </div>
+  <div id="gioco" style="display:none;">
     <form id="formGioco">
-      <input type="text" id="attCarta" placeholder="Inserisci carta attaccante" required>
-      <input type="text" id="defCarta" placeholder="Inserisci carta difensore" required>
-      <input type="text" id="attBonus" placeholder="Inserisci carta bonus attaccante">
-      <input type="text" id="defBonus" placeholder="Inserisci carta bonus difensore">
+      <label for="attCarta">Carta Attaccante (ID):</label>
+      <input type="text" id="attCarta" required><br>
+
+      <label for="attBonus">Carta Bonus Attaccante (ID):</label>
+      <input type="text" id="attBonus"><br>
+
+      <label for="defCarta">Carta Difensore (ID):</label>
+      <input type="text" id="defCarta" required><br>
+
+      <label for="defBonus">Carta Bonus Difensore (ID):</label>
+      <input type="text" id="defBonus"><br>
+
       <button type="submit">Avvia il round</button>
     </form>
-
     <div id="messaggioRisultato"></div>
   </div>
-
-  <script src="script.js"></script> <!-- Collega il file JS -->
+  
+  <script src="script.js"></script>
 </body>
 </html>
