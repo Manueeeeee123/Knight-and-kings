@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <title>Knights and Kings</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div id="schermataIniziale">
+  <h1>Knights and Kings</h1>
+  <button id="avviaGioco">Avvia una nuova partita</button>
+</div>
+
+<div id="gioco" style="display: none;">
+  <h2>Simula Battaglia</h2>
+  <form id="formGioco">
+    <label>Carta Attaccante:</label>
+    <input type="text" id="attCarta" required><br><br>
+    
+    <label>Bonus Attaccante (opzionale):</label>
+    <input type="text" id="attBonus"><br><br>
+    
+    <label>Carta Difensore:</label>
+    <input type="text" id="defCarta" required><br><br>
+    
+    <label>Bonus Difensore (opzionale):</label>
+    <input type="text" id="defBonus"><br><br>
+    
+    <button type="submit">Simula Battaglia</button>
+  </form>
+
+  <p id="messaggioRisultato"></p>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
