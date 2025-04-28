@@ -3,33 +3,33 @@ const carte = {
   1: { ATT: 40, SPE: 10, DIF: 50, HP: 120, STA: 3, STA_iniziale: 3 },
   2: { ATT: 5, SPE: 7, DIF: 5, HP: 100, STA: 1, STA_iniziale: 1 },
   3: { ATT: 100, SPE: 5, DIF: 30, HP: 300, STA: 5, STA_iniziale: 5 },
-  4: { ATT: 50, SPE: 15, DIF: 0, HP: 100, STA: 3, STA_iniziale: 3, speciale: true },
+  4: { ATT: 50, SPE: 15, DIF: 0, HP: 100, STA: 3, STA_iniziale: 3 },
   5: { ATT: 1, SPE: 10, DIF: 99, HP: 100, STA: 10, STA_iniziale: 10 },
-  B1: { ATT: 0, SPE: 20, DIF: 0, HP: 0, STA: 1, STA_iniziale: 1 },
-  B2: { ATT: 0, SPE: -10, DIF: 30, HP: 0, STA: 2, STA_iniziale: 2 },
-  B3: { ATT: 40, SPE: -5, DIF: 0, HP: 0, STA: 1, STA_iniziale: 1 },
-  B4: { ATT: 40, SPE: 0, DIF: -10, HP: 0, STA: 1, STA_iniziale: 1 },
-  B5: { ATT: 100, SPE: 50, DIF: 0, HP: 0, STA: 1, STA_iniziale: 1 },
-  B6: { ATT: 0, SPE: -30, DIF: 40, HP: 0, STA: 3, STA_iniziale: 3 }
+  B1: { ATT: 0, SPE: 20, DIF: 0, HP: 0, STA: 1 },
+  B2: { ATT: 0, SPE: -10, DIF: 30, HP: 0, STA: 2 },
+  B3: { ATT: 40, SPE: -5, DIF: 0, HP: 0, STA: 1 },
+  B4: { ATT: 40, SPE: 0, DIF: -10, HP: 0, STA: 1 },
+  B5: { ATT: 100, SPE: 50, DIF: 0, HP: 0, STA: 1 },
+  B6: { ATT: 0, SPE: -30, DIF: 40, HP: 0, STA: 3 } // Nuova carta bonus B6
 };
 
-// Stato corrente della partita
+// Stato corrente delle carte
 let attCartaCorrente = null;
 let defCartaCorrente = null;
 
 // Funzione per controllare la stamina e mostrare il messaggio
 function controllaStamina(campo, stamina, carta) {
   if (stamina <= 0) {
-    // Mostra il pop-up con il messaggio che specifica il campo
-    const risposta = prompt("La stamina della carta nel " + campo + " è finita! Vuoi ripristinarla? (OK per confermare)");
-    
-    if (risposta === 'OK') {
-      // Ripristina la stamina della carta al valore iniziale
-      carta.STA = carta.STA_iniziale;
-      alert("La stamina è stata ripristinata!");
-    } else {
-      alert("La carta non è stata ripristinata.");
-    }
+    // Mostra il pop-up con il messaggio che specifica il campo e la carta
+    alert(`La stamina della carta ${carta} nel ${campo} è finita! Sostituiscila.`);
+  }
+}
+
+// Funzione per controllare gli HP e mostrare il messaggio
+function controllaHP(campo, hp, carta) {
+  if (hp <= 0) {
+    // Mostra il pop-up con il messaggio che specifica il campo e la carta
+    alert(`La carta ${carta} nel ${campo} ha esaurito gli HP! Sostituiscila.`);
   }
 }
 
@@ -103,8 +103,8 @@ document.getElementById('formGioco').addEventListener('submit', function (e) {
   }
 
   // Controllo stamina
-  controllaStamina("Attaccante", attCartaCorrente.STA, attCartaCorrente);
-  controllaStamina("Difensore", defCartaCorrente.STA, defCartaCorrente);
+  controllaStamina("Attaccante", attCartaCorrente.STA, attCartaCorrente.id);
+  controllaStamina("Difensore", defCartaCorrente.STA, defCartaCorrente.id);
 
   // Simulazione del turno
   let danno = attCartaCorrente.ATT;
@@ -133,4 +133,7 @@ document.getElementById('formGioco').addEventListener('submit', function (e) {
     attCartaCorrente.STA -= 1;
     document.getElementById('messaggioRisultato').textContent = `Danno inflitto: ${dannoEffettivo.toFixed(2)} | HP difensore rimasti: ${defCartaCorrente.HP.toFixed(2)}`;
   }
+
+  // Controlla se gli HP sono sotto 0
+  controllaHP("Difensore", defCartaCorrente.HP, defCartaCorrente.id);
 });
