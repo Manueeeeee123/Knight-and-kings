@@ -20,7 +20,13 @@ let defCartaCorrente = null;
 // Funzione per controllare la stamina e mostrare il messaggio
 function controllaStamina(campo, stamina, carta) {
   if (stamina <= 0) {
-    // Mostra il pop-up con il messaggio che specifica il campo e la carta
+    // Ripristina automaticamente la stamina della carta
+    if (campo === 'Attaccante') {
+      attCartaCorrente.STA = attCartaCorrente.STA_iniziale;
+    } else if (campo === 'Difensore') {
+      defCartaCorrente.STA = defCartaCorrente.STA_iniziale;
+    }
+    // Mostra il pop-up
     alert(`La stamina della carta ${carta} nel ${campo} è finita! Sostituiscila.`);
   }
 }
@@ -28,7 +34,13 @@ function controllaStamina(campo, stamina, carta) {
 // Funzione per controllare gli HP e mostrare il messaggio
 function controllaHP(campo, hp, carta) {
   if (hp <= 0) {
-    // Mostra il pop-up con il messaggio che specifica il campo e la carta
+    // Ripristina automaticamente gli HP della carta
+    if (campo === 'Attaccante') {
+      attCartaCorrente.HP = attCartaCorrente.HP_iniziale;
+    } else if (campo === 'Difensore') {
+      defCartaCorrente.HP = defCartaCorrente.HP_iniziale;
+    }
+    // Mostra il pop-up
     alert(`La carta ${carta} nel ${campo} ha esaurito gli HP! Sostituiscila.`);
   }
 }
@@ -131,9 +143,10 @@ document.getElementById('formGioco').addEventListener('submit', function (e) {
     const dannoEffettivo = danno * (1 - defCartaCorrente.DIF / 100);
     defCartaCorrente.HP -= dannoEffettivo;
     attCartaCorrente.STA -= 1;
-    document.getElementById('messaggioRisultato').textContent = `Danno inflitto: ${dannoEffettivo.toFixed(2)} | HP difensore rimasti: ${defCartaCorrente.HP.toFixed(2)}`;
+    document.getElementById('messaggioRisultato').textContent = `Danno inflitto: ${dannoEffettivo}`;
   }
 
-  // Controlla se gli HP sono sotto 0
+  // Controllo HP
+  controllaHP("Attaccante", attCartaCorrente.HP, attCartaCorrente.id);
   controllaHP("Difensore", defCartaCorrente.HP, defCartaCorrente.id);
 });
