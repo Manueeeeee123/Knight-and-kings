@@ -1,136 +1,98 @@
-/* Impostazioni generali per l'intera pagina */
+/* Stili di base */
 body {
-  font-family: 'Georgia', serif; /* Font medievale */
-  background-color: #5c3d31; /* Colore di sfondo marrone medievale */
-  color: #f4e1c1; /* Colore chiaro per il testo */
+  font-family: 'Georgia', serif;
+  background-color: #5c3d31; /* Colore marrone medievale */
+  color: #f4e1c1;
   text-align: center;
-  padding: 10px; /* Diminuito il padding per i dispositivi mobili */
   margin: 0;
-  font-size: 18px; /* Leggero aumento della dimensione del testo */
-  height: 100%;
+  padding: 0;
+  font-size: 18px;
+}
+
+h1 {
+  color: #d1b19d;
+  font-family: 'Times New Roman', serif;
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.6);
+}
+
+#gioco {
+  margin-top: 30px;
+  border: 2px solid #d1b19d;
+  padding: 20px;
+  border-radius: 10px;
+  background-color: rgba(0, 0, 0, 0.5);
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.8);
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  width: 100%; /* Aggiungi una larghezza del 100% per il gioco */
+  max-width: 100%; /* Assicura che non vada oltre la larghezza dello schermo */
+  box-sizing: border-box;
 }
 
-/* Titoli */
-h1 {
-  color: #d1b19d; /* Titolo dorato */
-  font-family: 'Times New Roman', serif;
-  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.6); /* Ombra per il titolo */
-}
-
-h2 {
-  color: #d1b19d;
-  font-family: 'Times New Roman', serif;
-  margin-bottom: 20px;
-}
-
-/* Contenitore principale del gioco */
-#gioco {
-  margin-top: 20px;
-  border: 2px solid #d1b19d; /* Bordo dorato per il gioco */
-  padding: 15px;
-  border-radius: 10px;
-  background-color: rgba(0, 0, 0, 0.5); /* Sfumatura scura per il contenitore */
-  box-shadow: 0 0 15px rgba(0, 0, 0, 0.8);
-  display: flex; /* Usa Flexbox per il layout */
-  justify-content: center; /* Allinea gli elementi al centro */
-  flex-direction: column; /* Gli elementi sono disposti in colonna */
-  align-items: center; /* Allineamento orizzontale centrato */
-  width: 100%;
-}
-
-/* Modulo di inserimento */
 form {
   margin-bottom: 20px;
-  background-color: #3e2a2a; /* Sfondo scuro per il modulo */
-  padding: 15px;
+  background-color: #3e2a2a;
+  padding: 20px;
   border-radius: 8px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.6);
   display: flex;
-  flex-direction: column; /* Dispone gli elementi in colonna */
-  align-items: center; /* Allinea gli elementi al centro */
-  width: 100%; /* Il modulo occuperà tutta la larghezza disponibile */
-  max-width: 360px; /* Imposta una larghezza massima per evitare troppo grande */
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
 }
 
-/* Input */
-input {
+input, button {
   padding: 8px;
   margin: 10px;
-  border: 1px solid #d1b19d; /* Bordo dorato per gli input */
-  background-color: #6a4e42; /* Sfondo marrone per gli input */
-  color: #f4e1c1; /* Testo chiaro */
-  border-radius: 5px;
   font-size: 16px;
   font-family: 'Georgia', serif;
-  width: 90%; /* Larghezza al 90% per dispositivi mobili */
-  max-width: 320px; /* Impostiamo una larghezza massima per evitare che diventino troppo grandi */
-}
-
-/* Focalizzazione su input */
-input:focus {
-  outline: none;
-  border-color: #a18660; /* Colore dorato quando l'input è in focus */
-}
-
-/* Pulsante */
-button {
-  padding: 10px 20px;
-  background-color: #d1b19d; /* Colore dorato per i pulsanti */
-  border: none;
-  color: #3e2a2a;
-  font-size: 18px;
-  font-family: 'Georgia', serif;
   border-radius: 5px;
-  cursor: pointer;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-  width: 90%; /* I pulsanti occupano il 90% della larghezza su mobile */
-  max-width: 320px; /* Imposta una larghezza massima per il pulsante */
-}
-
-/* Hover su pulsante */
-button:hover {
-  background-color: #a18660; /* Colore più scuro al passaggio del mouse */
-}
-
-/* Messaggio di risultato */
-#messaggioRisultato {
-  font-family: 'Times New Roman', serif;
+  border: 1px solid #d1b19d;
+  background-color: #6a4e42;
   color: #f4e1c1;
-  margin-top: 20px;
+  width: 100%;
+  max-width: 300px; /* Impostiamo una larghezza massima per non farli diventare troppo grandi */
+}
+
+button {
+  background-color: #d1b19d;
+  border: none;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #a18660;
+}
+
+#messaggioRisultato {
+  color: #f4e1c1;
   font-size: 20px;
   font-weight: bold;
+  margin-top: 20px;
   text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.6);
 }
 
-/* Media Query per schermi piccoli (mobile) */
+/* Media query per dispositivi mobili */
 @media (max-width: 600px) {
   body {
-    font-size: 16px; /* Riduce leggermente la dimensione del testo per dispositivi piccoli */
-    padding: 10px;
+    font-size: 16px;
+    padding: 15px;
   }
 
   h1 {
-    font-size: 24px; /* Riduce la dimensione del titolo */
+    font-size: 24px;
   }
 
   form {
     padding: 15px;
-    width: 100%; /* Il modulo occuperà tutta la larghezza disponibile */
+    width: 100%; /* Rende il modulo al 100% della larghezza */
   }
 
-  input {
-    width: 90%; /* Imposta la larghezza degli input al 90% per schermi più piccoli */
-    max-width: none; /* Rimuove la larghezza massima per dispositivi mobili */
-  }
-
-  button {
-    width: 90%; /* I pulsanti occupano il 90% della larghezza su mobile */
-    padding: 12px;
-    font-size: 16px; /* Riduce la dimensione del testo del pulsante */
+  input, button {
+    width: 90%;
+    font-size: 16px;
   }
 
   #gioco {
@@ -139,6 +101,6 @@ button:hover {
   }
 
   #messaggioRisultato {
-    font-size: 18px; /* Riduce la dimensione del messaggio di risultato su mobile */
+    font-size: 18px;
   }
 }
