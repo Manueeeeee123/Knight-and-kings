@@ -9,7 +9,8 @@ const carte = {
   B2: { ATT: 0, SPE: -10, DIF: 30, HP: 0, STA: 2 },
   B3: { ATT: 40, SPE: -5, DIF: 0, HP: 0, STA: 1 },
   B4: { ATT: 40, SPE: 0, DIF: -10, HP: 0, STA: 1 },
-  B5: { ATT: 100, SPE: 50, DIF: 0, HP: 0, STA: 1 }
+  B5: { ATT: 100, SPE: 50, DIF: 0, HP: 0, STA: 1 },
+  B6: { ATT: 0, SPE: -30, DIF: 40, HP: 0, STA: 3 } // Nuova carta bonus B6
 };
 
 // Stato corrente della partita
@@ -63,6 +64,12 @@ document.getElementById('formGioco').addEventListener('submit', function (e) {
       attCartaCorrente.DIF += carte[attBonusId].DIF;
       attCartaCorrente.HP += carte[attBonusId].HP;
       attCartaCorrente.STA += carte[attBonusId].STA;
+
+      // Controllo se STA e/o DIF superano 100
+      if (attCartaCorrente.STA > 100 || attCartaCorrente.DIF > 100) {
+        document.getElementById('messaggioRisultato').textContent = "Errore: non è possibile usare questa carta bonus (STA o DIF superano 100)!";
+        return;
+      }
     }
   }
 
@@ -78,6 +85,12 @@ document.getElementById('formGioco').addEventListener('submit', function (e) {
       defCartaCorrente.DIF += carte[defBonusId].DIF;
       defCartaCorrente.HP += carte[defBonusId].HP;
       defCartaCorrente.STA += carte[defBonusId].STA;
+
+      // Controllo se STA e/o DIF superano 100
+      if (defCartaCorrente.STA > 100 || defCartaCorrente.DIF > 100) {
+        document.getElementById('messaggioRisultato').textContent = "Errore: non è possibile usare questa carta bonus (STA o DIF superano 100)!";
+        return;
+      }
     }
   }
 
