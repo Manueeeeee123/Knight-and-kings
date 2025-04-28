@@ -2,37 +2,25 @@
 <html lang="it">
 <head>
   <meta charset="UTF-8">
-  <title>Knights and Kings</title>
-  <link rel="stylesheet" href="style.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Il Tuo Gioco</title>
+  <link rel="stylesheet" href="style.css"> <!-- Collega il file CSS -->
 </head>
 <body>
 
-<div id="schermataIniziale">
-  <h1>Knights and Kings</h1>
-  <button id="avviaGioco">Avvia una nuova partita</button>
-</div>
+  <h1>Benvenuto nel Gioco!</h1>
 
-<div id="gioco" style="display: none;">
-  <h2>Simula Battaglia</h2>
-  <form id="formGioco">
-    <label>Carta Attaccante:</label>
-    <input type="text" id="attCarta" required><br><br>
-    
-    <label>Bonus Attaccante (opzionale):</label>
-    <input type="text" id="attBonus"><br><br>
-    
-    <label>Carta Difensore:</label>
-    <input type="text" id="defCarta" required><br><br>
-    
-    <label>Bonus Difensore (opzionale):</label>
-    <input type="text" id="defBonus"><br><br>
-    
-    <button type="submit">Simula Battaglia</button>
-  </form>
+  <div id="gioco">
+    <h2>Inizia a giocare</h2>
 
-  <p id="messaggioRisultato"></p>
-</div>
+    <form id="formGioco">
+      <input type="text" id="inputNome" placeholder="Inserisci il tuo nome" required>
+      <button type="submit">Inizia</button>
+    </form>
 
-<script src="script.js"></script>
+    <div id="messaggioRisultato"></div>
+  </div>
+
+  <script src="script.js"></script> <!-- Collega il file JS -->
 </body>
 </html>
