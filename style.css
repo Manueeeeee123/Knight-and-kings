@@ -26,8 +26,8 @@ h1 {
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  width: 100%; /* Aggiungi una larghezza del 100% per il gioco */
-  max-width: 100%; /* Assicura che non vada oltre la larghezza dello schermo */
+  width: 100%;
+  max-width: 100%;
   box-sizing: border-box;
 }
 
@@ -53,7 +53,7 @@ input, button {
   background-color: #6a4e42;
   color: #f4e1c1;
   width: 100%;
-  max-width: 300px; /* Impostiamo una larghezza massima per non farli diventare troppo grandi */
+  max-width: 300px;
 }
 
 button {
@@ -87,7 +87,7 @@ button:hover {
 
   form {
     padding: 15px;
-    width: 100%; /* Rende il modulo al 100% della larghezza */
+    width: 100%;
   }
 
   input, button {
