@@ -2,22 +2,20 @@
 const carte = {
   1: { ATT: 40, SPE: 10, DIF: 50, HP: 120, HP_iniziale: 120, STA: 3, STA_iniziale: 3 },
   2: { ATT: 5, SPE: 7, DIF: 5, HP: 100, HP_iniziale: 100, STA: 1, STA_iniziale: 1 },
-  3: { ATT: 100, SPE: 5, DIF: 30, HP: 300, HP_iniziale: 300, STA: 5, STA_iniziale: 5 },
+  3: { ATT: 1, SPE: 10, DIF: 99, HP: 12, HP_iniziale: 12, STA: 0, STA_iniziale: 0 },
   4: { ATT: 50, SPE: 15, DIF: 0, HP: 100, HP_iniziale: 100, STA: 3, STA_iniziale: 3 },
-  5: { ATT: 1, SPE: 10, DIF: 99, HP: 100, HP_iniziale: 100, STA: 10, STA_iniziale: 10 },
+  5: { ATT: 1, SPE: 10, DIF: 99, HP: 12, HP_iniziale: 12, STA: 10, STA_iniziale: 10 },
   B1: { ATT: 0, SPE: 20, DIF: 0, HP: 0, STA: 1 },
   B2: { ATT: 0, SPE: -10, DIF: 30, HP: 0, STA: 2 },
   B3: { ATT: 40, SPE: -5, DIF: 0, HP: 0, STA: 1 },
   B4: { ATT: 40, SPE: 0, DIF: -10, HP: 0, STA: 1 },
   B5: { ATT: 100, SPE: 50, DIF: 0, HP: 0, STA: 1 },
-  B6: { ATT: 0, SPE: -30, DIF: 40, HP: 0, STA: 3 } // Nuova carta bonus B6
+  B6: { ATT: 0, SPE: -30, DIF: 40, HP: 0, STA: 3 }
 };
 
-// Stato corrente delle carte
 let attCartaCorrente = null;
 let defCartaCorrente = null;
 
-// Funzione per controllare la stamina e mostrare il messaggio
 function controllaStamina(campo, stamina, carta) {
   if (stamina <= 0) {
     if (campo === 'Attaccante') {
@@ -29,7 +27,6 @@ function controllaStamina(campo, stamina, carta) {
   }
 }
 
-// Funzione per controllare gli HP e mostrare il messaggio
 function controllaHP(campo, hp, carta) {
   if (hp <= 0) {
     if (campo === 'Attaccante') {
@@ -41,13 +38,11 @@ function controllaHP(campo, hp, carta) {
   }
 }
 
-// Gestisci il gioco al click di "Avvia Gioco"
 document.getElementById('avviaGioco').addEventListener('click', () => {
   document.getElementById('schermataIniziale').style.display = 'none';
   document.getElementById('gioco').style.display = 'block';
 });
 
-// Gestisci l'invio del form
 document.getElementById('formGioco').addEventListener('submit', function (e) {
   e.preventDefault();
 
@@ -108,11 +103,9 @@ document.getElementById('formGioco').addEventListener('submit', function (e) {
     }
   }
 
-  // Controlli iniziali
   controllaStamina("Attaccante", attCartaCorrente.STA, attCartaCorrente.id);
   controllaStamina("Difensore", defCartaCorrente.STA, defCartaCorrente.id);
 
-  // Simulazione turno
   let danno = attCartaCorrente.ATT;
 
   if (attCartaCorrente.id === "4" && Math.random() < 0.1) {
@@ -135,10 +128,11 @@ document.getElementById('formGioco').addEventListener('submit', function (e) {
     const dannoEffettivo = danno * (1 - defCartaCorrente.DIF / 100);
     defCartaCorrente.HP -= dannoEffettivo;
     attCartaCorrente.STA -= 1;
-    document.getElementById('messaggioRisultato').textContent = `Danno inflitto: ${dannoEffettivo.toFixed(1)}`;
+    const hpRimasti = Math.max(0, defCartaCorrente.HP.toFixed(1));
+    document.getElementById('messaggioRisultato').textContent =
+      `Danno inflitto: ${dannoEffettivo.toFixed(1)} | HP difensore rimanenti: ${hpRimasti}`;
   }
 
-  // Controlli finali
   controllaHP("Attaccante", attCartaCorrente.HP, attCartaCorrente.id);
   controllaHP("Difensore", defCartaCorrente.HP, defCartaCorrente.id);
 });
